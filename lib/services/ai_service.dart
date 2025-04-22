@@ -48,10 +48,13 @@ class AIService {
       final response = await http.post(
         Uri.parse(apiUrl),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type':
+              'application/json; charset=utf-8', // Specify UTF-8 charset
           'Authorization': 'Bearer $apiKey',
+          'Accept': 'application/json; charset=utf-8', // Accept UTF-8 response
         },
-        body: jsonEncode({
+        body: utf8.encode(jsonEncode({
+          // Explicitly encode using UTF-8
           "model": "gpt-4o-mini",
           "messages": [
             {
@@ -62,14 +65,16 @@ class AIService {
             {"role": "user", "content": prompt}
           ],
           "temperature": 0.7
-        }),
+        })),
       );
 
       if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
+        final responseData = jsonDecode(
+            utf8.decode(response.bodyBytes)); // Explicitly decode using UTF-8
         return responseData['choices'][0]['message']['content'];
       } else {
-        print('API Hatası: ${response.statusCode} - ${response.body}');
+        print(
+            'API Hatası: ${response.statusCode} - ${utf8.decode(response.bodyBytes)}');
         return 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin. (Hata kodu: ${response.statusCode})';
       }
     } catch (e) {
