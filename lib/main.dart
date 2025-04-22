@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/profile_page.dart';
 import 'pages/diet_plan_page.dart';
 import 'pages/ai_chat_page.dart';
+import 'pages/food_tracking_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +15,23 @@ class MyApp extends StatelessWidget {
       title: 'Diet App',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          backgroundColor: Colors.green,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.green,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
       ),
       home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -32,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     ProfilePage(),
     DietPlanPage(),
+    FoodTrackingPage(),
     AIChatPage(),
   ];
 
@@ -44,26 +61,31 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Diet App'),
-      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Profil',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.fastfood),
-            label: 'Diet Plan',
+            icon: Icon(Icons.restaurant_menu),
+            label: 'Diyet Plan',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.food_bank),
+            label: 'Yemek Takibi',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            label: 'AI Chat',
+            label: 'AI Sohbet',
           ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
       ),
     );

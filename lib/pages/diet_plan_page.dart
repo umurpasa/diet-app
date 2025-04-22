@@ -9,7 +9,7 @@ class DietPlanPage extends StatefulWidget {
 
 class _DietPlanPageState extends State<DietPlanPage> {
   AIService aiService = AIService();
-  String dietPlan = "Fetching diet plan...";
+  String dietPlan = "Loading your diet plan...";
   String userInfo = "";
   bool isLoading = false;
 
@@ -58,7 +58,7 @@ class _DietPlanPageState extends State<DietPlanPage> {
 
     setState(() {
       isLoading = true;
-      dietPlan = "Preparing a personalized diet plan...";
+      dietPlan = "Generating your diet plan...";
     });
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
