@@ -1,0 +1,505 @@
+{
+  "@@locale": "tr",
+
+  "appTitle": "Diet App",
+
+  "tabDietPlan": "Diyet Plan",
+  "tabFoodTracking": "Yemek Takibi",
+  "tabProgress": "İlerleme",
+  "tabAiChat": "AI Sohbet",
+  "tabDietitian": "Diyetisyen",
+  "navEmergency": "Acil Destek",
+
+  "pgHeaderEyebrow": "Yolculuğun",
+  "chatHeaderEyebrow": "Her zaman burada",
+  "profileHeaderEyebrow": "Hesabın",
+
+  "authWelcomeBack": "Tekrar hoş geldin",
+  "authCreateAccount": "Hesap oluştur",
+  "authLoginSubtitle": "Devam etmek için giriş yap.",
+  "authSignupSubtitle": "Başlamak için birkaç saniye yeter.",
+  "authEmailLabel": "E-posta",
+  "authPasswordLabel": "Şifre",
+  "authEmailRequired": "E-posta gerekli",
+  "authEmailInvalid": "Geçerli bir e-posta gir",
+  "authPasswordRequired": "Şifre gerekli",
+  "authPasswordTooShort": "Şifre en az 6 karakter olmalı",
+  "authPasswordHelper": "En az 6 karakter",
+  "authLoginButton": "Giriş yap",
+  "authSignupButton": "Kayıt ol",
+  "authToggleToSignup": "Hesabın yok mu? Kayıt ol",
+  "authToggleToLogin": "Zaten hesabın var mı? Giriş yap",
+  "authSignupSuccess": "Kayıt başarılı. E-postana gönderilen doğrulama bağlantısına tıkladıktan sonra giriş yapabilirsin.",
+
+  "connectionError": "Bağlantı hatası. İnternet bağlantını kontrol edip tekrar dene.",
+
+  "unexpectedError": "Beklenmeyen bir hata oluştu: {error}",
+  "@unexpectedError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "commonSave": "Kaydet",
+  "commonCancel": "İptal",
+  "commonClose": "Kapat",
+  "commonRetry": "Tekrar dene",
+  "commonLoading": "Yükleniyor...",
+  "commonDelete": "Sil",
+  "commonNext": "Devam",
+  "commonSkip": "Geç",
+
+  "languageTooltip": "Dil / Language",
+  "languageTurkish": "Türkçe",
+  "languageEnglish": "English",
+
+  "onbStepCounter": "Adım {step}/8",
+  "@onbStepCounter": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "onbNext": "Devam et",
+  "onbBackTooltip": "Geri",
+  "onbExitTooltip": "Çık",
+  "onbResumeToast": "Kaldığın yerden devam ediyoruz 👋",
+  "onbSessionLost": "Oturum bulunamadı. Lütfen tekrar giriş yap.",
+  "onbSaveFailed": "Kaydedilemedi: {message}",
+  "@onbSaveFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "onbWelcomeStart": "Başla",
+
+  "introLine1": "Merhaba.",
+  "introLine2": "Bundan böyle bu yolculukta yanındayım.",
+  "introLine3": "Önce seni tanımak istiyorum — sadece 2 dakika. Hazırsan başlayalım.",
+  "introTapHint": "devam etmek için dokun",
+
+  "onbIdentityTitle": "Kendini tanıtır mısın?",
+  "onbIdentityWhy": "Yaşın ve cinsiyetin, günlük enerji ihtiyacını doğru hesaplayabilmemiz için gerekli.",
+  "onbNameLabel": "Adın",
+  "onbAgeLabel": "Yaşın",
+  "onbSexLabel": "Cinsiyetin",
+  "onbSexFemale": "Kadın",
+  "onbSexMale": "Erkek",
+  "onbSexUnspecified": "Belirtmek istemiyorum",
+
+  "onbBodyTitle": "Vücut ölçülerin",
+  "onbBodyWhy": "Boy ve kilon, sana uygun kalori hedefini belirlememizin temeli.",
+  "onbHeightLabel": "Boy (cm)",
+  "onbWeightLabel": "Kilo (kg)",
+  "onbMeasurementsLabel": "Bel ve kalça çevresi (opsiyonel)",
+  "onbMeasurementsHint": "Mezuran yoksa geçebilirsin — girersen ilerlemeni takip etmek için güzel bir başlangıç olur.",
+  "onbWaistLabel": "Bel (cm)",
+  "onbHipLabel": "Kalça (cm)",
+
+  "onbGoalTitle": "Hedefin ne?",
+  "onbGoalWhy": "Planını ve önerilerimizi tamamen bu hedefe göre şekillendireceğiz.",
+  "onbGoalLose": "Kilo vermek",
+  "onbGoalGain": "Kilo almak",
+  "onbGoalMaintain": "Kilomu korumak",
+  "onbGoalHealthy": "Sadece sağlıklı beslenmek",
+  "onbTargetWeightLabel": "Hedef kilo (kg, opsiyonel)",
+  "onbPaceLabel": "Nasıl bir tempo istersin?",
+  "onbPaceSlow": "Yavaş ve sürdürülebilir",
+  "onbPaceBalanced": "Dengeli",
+  "onbPaceFast": "Hızlı",
+
+  "onbHealthTitle": "Sağlık durumun",
+  "onbHealthWhy": "Kronik durumlar ve alerjiler, planının senin için güvenli olmasını sağlayan en önemli bilgiler.",
+  "onbConditionsLabel": "Kronik bir durumun var mı?",
+  "onbConditionDiabetes": "Diyabet",
+  "onbConditionInsulinResistance": "İnsülin direnci",
+  "onbConditionHypertension": "Yüksek tansiyon",
+  "onbConditionThyroid": "Tiroid",
+  "onbConditionCholesterol": "Kolesterol",
+  "onbOptionOther": "Diğer",
+  "onbOptionNone": "Yok",
+  "onbConditionsOtherLabel": "Diğer durumunu yazar mısın?",
+  "onbMedicationsLabel": "Düzenli kullandığın ilaç (opsiyonel)",
+  "onbAllergiesLabel": "Alerjin veya intoleransın var mı?",
+  "onbAllergyGluten": "Gluten",
+  "onbAllergyLactose": "Laktoz",
+  "onbAllergyNuts": "Fındık / fıstık",
+  "onbAllergySeafood": "Deniz ürünleri",
+  "onbAllergyEgg": "Yumurta",
+  "onbAllergiesOtherLabel": "Diğer alerjini yazar mısın?",
+
+  "onbLifestyleTitle": "Yaşam tarzın",
+  "onbLifestyleWhy": "Gün içindeki hareketin ve alışkanlıkların, kalori ihtiyacını doğrudan etkiler.",
+  "onbActivityLabel": "Hareket düzeyin",
+  "onbActivitySedentary": "Masa başı — hareketsiz",
+  "onbActivityLight": "Az hareketli",
+  "onbActivityModerate": "Orta",
+  "onbActivityActive": "Aktif",
+  "onbActivityVeryActive": "Çok aktif",
+  "onbWaterLabel": "Günde kaç bardak su içersin?",
+  "onbSleepLabel": "Uykun (opsiyonel)",
+  "onbSleepLt5": "5 saatten az",
+  "onbSleep5to6": "5-6 saat",
+  "onbSleep7to8": "7-8 saat",
+  "onbSleep8plus": "8 saatten çok",
+  "onbSmokingLabel": "Sigara (opsiyonel)",
+  "onbAlcoholLabel": "Alkol (opsiyonel)",
+  "onbHabitOccasional": "Ara sıra",
+  "onbHabitRegular": "Düzenli",
+
+  "onbHabitsTitle": "Beslenme alışkanlıkların",
+  "onbHabitsWhy": "Gerçek düzenini bilirsek, plan hayatına çok daha kolay oturur.",
+  "onbMealsLabel": "Günde kaç öğün yersin?",
+  "onbBreakfastLabel": "Kahvaltıyı atlar mısın?",
+  "onbBreakfastNever": "Hiç atlamam",
+  "onbBreakfastSometimes": "Bazen",
+  "onbBreakfastOften": "Çoğu gün",
+  "onbEatingOutLabel": "Ne sıklıkla dışarıda yer veya sipariş verirsin?",
+  "onbEatingOutRarely": "Nadiren",
+  "onbEatingOutWeekly12": "Haftada 1-2",
+  "onbEatingOutWeekly3plus": "Haftada 3+",
+  "onbEatingOutDaily": "Her gün",
+  "onbWeakMomentsLabel": "Zayıf anların hangileri?",
+  "onbWeakNightSnacking": "Gece atıştırması",
+  "onbWeakSweetCraving": "Tatlı krizi",
+  "onbWeakHungerBetweenMeals": "Öğün dışı açlık",
+  "onbWeakStressEating": "Stres yemesi",
+
+  "onbPrefsTitle": "Beslenme tercihlerin",
+  "onbPrefsWhy": "Sevmediğin yiyecekleri plana hiç koymayalım — sürdürülebilirlik böyle başlar.",
+  "onbDietStyleLabel": "Beslenme tarzın",
+  "onbDietOmnivore": "Hepçil",
+  "onbDietVegetarian": "Vejetaryen",
+  "onbDietVegan": "Vegan",
+  "onbDislikedLabel": "Sevmediğin yiyecekler (opsiyonel)",
+  "onbDislikedFieldLabel": "Yemek istemediklerin",
+  "onbDislikedHint": "Örn. brokoli, sakatat, mantar...",
+
+  "onbSummaryTitle": "Profilin hazır 🎉",
+  "onbSummarySubtitle": "İşte anlattıkların. Bunları istediğin zaman profilinden güncelleyebilirsin.",
+  "onbSummaryName": "İsim",
+  "onbSummaryAge": "Yaş",
+  "onbSummaryBody": "Boy / Kilo",
+  "onbSummaryGoal": "Hedef",
+  "onbSummaryAllergies": "Alerji / intolerans",
+  "onbSummaryStart": "Başlayalım",
+  "onbSummaryCreatePlan": "İlk planımı oluştur",
+
+  "profTitle": "Profil",
+  "profNotFilled": "Henüz doldurulmadı",
+  "profSaved": "Kaydedildi ✓",
+  "profLoadFailed": "Profil yüklenemedi: {message}",
+  "@profLoadFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "profAgeValue": "{age} yaş",
+  "@profAgeValue": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+
+  "profSectionIdentity": "Kişisel bilgiler",
+  "profSectionBody": "Vücut",
+  "profSectionGoal": "Hedef",
+  "profSectionHealth": "Sağlık",
+  "profSectionLifestyle": "Yaşam tarzı",
+  "profSectionHabits": "Alışkanlıklar",
+  "profSectionPrefs": "Tercihler",
+  "profSectionAccount": "Hesap",
+
+  "profConditionsShort": "Kronik",
+  "profAllergiesShort": "Alerji",
+  "profMedicationsShort": "İlaç",
+  "profWaterShort": "Su",
+  "profSleepShort": "Uyku",
+  "profSmokingShort": "Sigara",
+  "profAlcoholShort": "Alkol",
+  "profMealsShort": "Öğün",
+  "profBreakfastShort": "Kahvaltı atlama",
+  "profEatingOutShort": "Dışarıda yeme",
+  "profWeakShort": "Zayıf anlar",
+  "profDislikedShort": "Sevmedikleri",
+
+  "profBodyNote": "Kilo takibin İlerleme sayfasında — buraya güncel kilonu yaz. Bel/kalça ölçüleri de orada güncellenecek.",
+
+  "profEmailLabel": "E-posta",
+  "profChangePassword": "Şifre değiştir",
+  "profNewPasswordLabel": "Yeni şifre",
+  "profNewPasswordRepeatLabel": "Yeni şifre (tekrar)",
+  "profPasswordMismatch": "Şifreler eşleşmiyor",
+  "profPasswordChanged": "Şifren güncellendi ✓",
+  "profLanguageLabel": "Dil",
+  "profSignOut": "Çıkış yap",
+  "profSignOutConfirm": "Oturumu kapatmak istediğine emin misin?",
+
+  "dietPlanTitle": "Diyet Planı",
+  "dpMenuTooltip": "Plan seçenekleri",
+  "dpMenuRevise": "Planı revize et",
+  "dpMenuRegenerate": "Sıfırdan yeni plan",
+  "dpRegenerateConfirm": "Mevcut plan tamamen yenisiyle değiştirilecek ve günlük AI hakkından 1 kullanılacak. Devam etmek istiyor musun?",
+  "dpRegenerateContinue": "Devam",
+  "dpKcalPerDay": "kcal/gün",
+  "dpMacroCarb": "Karb",
+  "dpMacroProtein": "Protein",
+  "dpMacroFat": "Yağ",
+  "dayShortMon": "Pzt",
+  "dayShortTue": "Sal",
+  "dayShortWed": "Çar",
+  "dayShortThu": "Per",
+  "dayShortFri": "Cum",
+  "dayShortSat": "Cmt",
+  "dayShortSun": "Paz",
+  "dpMealBreakfast": "Kahvaltı",
+  "dpMealLunch": "Öğle Yemeği",
+  "dpMealDinner": "Akşam Yemeği",
+  "dpMealSnack": "Ara Öğün",
+  "dpMealDefault": "Öğün",
+  "dpEmptyMessage": "Henüz bir diyet planın yok.\nSana özel ilk planını hemen oluşturalım.",
+  "dpCreateFirstPlan": "İlk planımı oluştur",
+  "dpNoMealsForDay": "Bu gün için öğün bulunamadı.",
+  "dpRevisePrompt": "Plandan memnun olmadığın noktaları seç:",
+  "dpReasonDisliked": "Sevmedim",
+  "dpReasonHardToPrepare": "Hazırlaması zor",
+  "dpReasonIngredientsUnavailable": "Malzemeleri bulamıyorum",
+  "dpReviseNoteLabel": "Not (isteğe bağlı)",
+  "dpReviseNoteHint": "Örn. akşamları balık istemiyorum",
+  "dpReviseValidation": "En az bir neden seç veya bir not yaz.",
+  "dpReviseSubmit": "Gönder",
+
+  "ftTitle": "Yemek Takibi",
+  "ftToday": "Bugün",
+  "ftYesterday": "Dün",
+  "ftWaterTitle": "Su Takibi",
+  "ftGlasses": "{count} bardak",
+  "@ftGlasses": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ftMealBreakfast": "Kahvaltı",
+  "ftMealLunch": "Öğle Yemeği",
+  "ftMealDinner": "Akşam Yemeği",
+  "ftMealSnack": "Ara Öğün",
+  "ftEmptyDay": "Bu gün için henüz yemek kaydı yok.",
+  "ftEmptyCta": "İlk öğününü ekle",
+  "ftAddTooltip": "Yemek ekle",
+  "ftAddSheetTitle": "Yemek Ekle",
+  "ftRecentLabel": "Son eklenenler",
+  "ftFoodName": "Yiyecek adı",
+  "ftCalories": "Kalori (kcal)",
+  "ftNameRequired": "Yiyecek adı gerekli",
+  "ftCaloriesRequired": "Kalori gerekli",
+  "ftCaloriesInvalid": "Geçerli bir kalori değeri gir",
+  "ftAdd": "Ekle",
+  "ftLoadError": "Kayıtlar yüklenemedi: {message}",
+  "@ftLoadError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "ftAddError": "Eklenemedi: {message}",
+  "@ftAddError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "ftDeleteError": "Silinemedi: {message}",
+  "@ftDeleteError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "ftWaterError": "Su kaydı güncellenemedi: {message}",
+  "@ftWaterError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "pgTitle": "İlerleme",
+  "pgToday": "Bugün",
+  "pgYesterday": "Dün",
+  "pgHeroEmpty": "Henüz kilo kaydın yok.\nİlk ölçümünle yolculuğun başlasın.",
+  "pgAddFirst": "İlk ölçümünü ekle",
+  "pgJourneyRange": "Başlangıç {start} kg → hedef {target} kg",
+  "@pgJourneyRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "pgToGoal": "Hedefe {kg} kg kaldı",
+  "@pgToGoal": {
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "pgGoalReached": "Hedefine ulaştın 🎉",
+  "pgTotalChange": "Başlangıçtan bu yana {change}",
+  "@pgTotalChange": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      }
+    }
+  },
+  "pgMeasurementsTitle": "Vücut Ölçüleri",
+  "pgWaist": "Bel",
+  "pgHip": "Kalça",
+  "pgMeasurementsEmpty": "Henüz bel/kalça ölçüsü yok.",
+  "pgMeasurementsCta": "Ölçüm ekle",
+  "pgWeightChart": "Kilo",
+  "pgCaloriesChart": "Kalori",
+  "pgWaterChart": "Su (bardak)",
+  "pgLast30Days": "Son 30 gün",
+  "pgLast7Days": "Son 7 gün",
+  "pgWeightEmpty": "Grafik için en az 2 kilo girişi gerekli.\nSağ alttaki + ile ölçüm ekle.",
+  "pgCaloriesEmpty": "Son 7 günde yemek kaydı yok.\nYemek Takibi sekmesinden ekleyebilirsin.",
+  "pgWaterEmpty": "Son 7 günde su kaydı yok.\nYemek Takibi sekmesinden ekleyebilirsin.",
+  "pgAddTooltip": "Ölçüm ekle",
+  "pgSheetTitle": "Ölçüm Ekle",
+  "pgWeightField": "Kilo (kg)",
+  "pgWaistField": "Bel (cm)",
+  "pgHipField": "Kalça (cm)",
+  "pgAtLeastOne": "En az bir alanı doldurmalısın.",
+  "pgInvalidValue": "Geçerli bir değer gir",
+  "pgDateLabel": "Tarih",
+  "pgSaved": "Kaydedildi ✓",
+  "pgLoadError": "Veriler yüklenemedi: {message}",
+  "@pgLoadError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "pgSaveError": "Kaydedilemedi: {message}",
+  "@pgSaveError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "chatTitle": "Danışman",
+  "chatWelcome": "Merhaba! Ben senin beslenme ve diyet danışmanınım. Beslenme, diyet veya sağlıklı yaşam hakkında sorularını yanıtlayabilirim.",
+  "chatHint": "Bir soru sor...",
+  "chatSendTooltip": "Gönder",
+  "chatMenuTooltip": "Sohbet seçenekleri",
+  "chatMenuClear": "Sohbeti temizle",
+  "chatClearConfirmTitle": "Sohbeti temizle",
+  "chatClearConfirmBody": "Tüm sohbet geçmişin silinecek ve danışman önceki konuşmayı hatırlamaz.",
+  "chatToday": "Bugün",
+  "chatYesterday": "Dün",
+  "chatTyping": "Yazıyor",
+  "chatLoadError": "Sohbet geçmişi yüklenemedi.",
+  "chatErrorReply": "Üzgünüm, yanıt oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.",
+
+  "dcTitle": "Diyetisyen",
+  "dcTitleDietitian": "Danışan",
+  "dcSubtitleUser": "Diyetisyenin",
+  "dcSubtitleDietitian": "Danışanın",
+  "dcToday": "Bugün",
+  "dcYesterday": "Dün",
+  "dcNoAssignTitle": "Henüz diyetisyen atanmadı",
+  "dcNoAssignBody": "Sana bir diyetisyen atandığında konuşmanız burada başlayacak.",
+  "dcNoClientTitle": "Henüz danışan atanmadı",
+  "dcNoClientBody": "Sana bir danışan atandığında konuşmanız burada başlayacak.",
+  "dcAskAi": "Şimdilik Danışman'a sor",
+  "dcNoMessages": "Henüz mesaj yok.\nİlk mesajı sen gönder!",
+  "dcHint": "Mesaj yaz...",
+  "dcSendTooltip": "Gönder",
+  "dcLoadError": "Yüklenemedi: {message}",
+  "@dcLoadError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "dcSendError": "Gönderilemedi: {message}",
+  "@dcSendError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "emIntroLine1": "Tamam. Buradayım.",
+  "emIntroLine2": "Bunu birlikte atlatacağız.",
+
+  "emTriggerTitle": "Ne oldu?",
+  "emTriggerSubtitle": "Yargılamak yok. Sadece şu an ne hissettiğini seç, birlikte geçirelim.",
+  "emTriggerNightSnacking": "Gece atıştırma isteği",
+  "emTriggerSweetCraving": "Tatlı krizi",
+  "emTriggerHungerBetweenMeals": "Öğün dışı açlık",
+  "emTriggerStressEating": "Stres yemesi",
+
+  "emBreathTitle": "Önce bir nefes al",
+  "emBreathSubtitle": "İstek bir dalga gibidir: yükselir ve geçer. 30 saniye boyunca sadece nefesine odaklan.",
+  "emBreathInhale": "Nefes al...",
+  "emBreathExhale": "Nefes ver...",
+  "emBreathDone": "Harika. Dalga şimdiden küçülüyor.",
+
+  "emWaterTitle": "Bir bardak su iç",
+  "emWaterSubtitle": "Susuzluk çoğu zaman açlık gibi hissettirir. Bir bardak su iç ve istersen 5 dakika beklemeyi dene — istek genellikle bu sürede hafifler.",
+  "emWaterStartTimer": "5 dk zamanlayıcı başlat",
+  "emWaterTimerDone": "Süre doldu — hâlâ buradaysan çok iyi gidiyorsun 👏",
+
+  "emAlternativesTitle": "Bunlardan birini denemek ister misin?",
+  "emAlternativesSubtitle": "Küçük bir değişiklik bile isteği yönlendirmeye yeter.",
+  "emAltNightSnacking1": "Bir fincan bitki çayı demle (papatya veya ıhlamur).",
+  "emAltNightSnacking2": "Dişlerini fırçala — atıştırma isteğini şaşırtıcı biçimde keser.",
+  "emAltNightSnacking3": "Işıkları kıs, telefonu bırak; vücuduna \"gün bitti\" sinyali ver.",
+  "emAltSweetCraving1": "Bir avuç çilek, yaban mersini veya birkaç dilim elma.",
+  "emAltSweetCraving2": "Bir küp bitter çikolata (%70+) — acele etmeden, tadını çıkararak.",
+  "emAltSweetCraving3": "Tarçın serpilmiş yoğurt: tatlı hissi verir, krizi büyütmez.",
+  "emAltHungerBetweenMeals1": "Bir avuç çiğ badem veya ceviz.",
+  "emAltHungerBetweenMeals2": "Havuç ya da salatalık çubukları — çıtır ama hafif.",
+  "emAltHungerBetweenMeals3": "Bir bardak ayran veya küçük bir kase yoğurt.",
+  "emAltStressEating1": "5 dakikalık kısa bir yürüyüş — sadece kapıya kadar bile olur.",
+  "emAltStressEating2": "Sevdiğin birine iki satır mesaj at; duyguyu yemekle değil sözle boşalt.",
+  "emAltStressEating3": "Ellerini meşgul et: bir çekmece topla, bulaşığı hallet, esneme yap.",
+
+  "emClosingTitle": "Karar senin",
+  "emClosingBody": "Hâlâ istiyorsan sorun değil — bu bir irade savaşı değil. Sadece porsiyonu küçük tut, otur ve acele etmeden ye. Tek bir an, tüm emeğini silmez.",
+
+  "emOutcomeTitle": "Nasıl geçti?",
+  "emOutcomeSubtitle": "Hangisi olursa olsun, buraya gelmen değerli.",
+  "emOutcomeOvercame": "Krizi atlattım 💪",
+  "emOutcomeAteAnyway": "Yine de yedim, sorun değil",
+
+  "emThanksTitle": "Teşekkürler 💚",
+  "emThanksBody": "Kriz anında durup buraya gelmek başlı başına bir kazanım. Kendine iyi davranmaya devam et — yarın yeni bir gün."
+}
