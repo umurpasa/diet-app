@@ -1,0 +1,36 @@
+# Satır sonu normalizasyonu.
+#
+# Neden: Proje Windows'ta geliştiriliyor, GitHub ve CI Linux'ta çalışıyor.
+# Bu dosya olmadan Windows'un CRLF'i depoya sızıyor ve tek satır bile
+# değişmediği halde dosyalar "tamamen değişmiş" görünüyor (bu repoda 95 dosya
+# bu yüzden değişmiş görünüyordu). Kural: depoda her zaman LF, çalışma
+# kopyasında platformun doğal hali.
+
+* text=auto eol=lf
+
+# Windows'ta CRLF şart olan dosyalar
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# Unix'te LF şart olan çalıştırılabilir betikler
+gradlew text eol=lf
+*.sh    text eol=lf
+
+# İkili dosyalar — dokunma
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.ttf  binary
+*.otf  binary
+*.woff binary
+*.woff2 binary
+*.jar  binary
+*.keystore binary
+*.jks  binary
+
+# GitHub dil istatistiklerinde üretilmiş kod sayılmasın
+lib/l10n/app_localizations*.dart linguist-generated=true

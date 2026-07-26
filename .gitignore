@@ -43,3 +43,40 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# ============================================================
+# Yerel ortam ve sırlar — depoya ASLA girmez
+# ============================================================
+# Makineye özgü SDK yolları
+android/local.properties
+android/key.properties
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+
+# İmzalama anahtarları
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Ortam değişkenleri
+.env
+.env.*
+!.env.example
+
+# Supabase CLI'ın yerel bağlantı durumu (proje ref'i, pooler URL'i, sürümler)
+supabase/.temp/
+
+# ============================================================
+# Yerel çalışma dosyaları — bilgisayarda kalır, depoda görünmez
+# ============================================================
+# AI asistan yapılandırması ve oturum izinleri
+.claude/
+.cursor/
+.aider*
+
+# docs/ içinde yalnızca kalıcı teknik dokümanlar paylaşılır.
+# Çalışma notları, iç yol haritası ve AI prompt taslakları yerelde kalır.
+docs/*
+!docs/ARCHITECTURE.md
+!docs/SETUP.md
