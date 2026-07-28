@@ -7,7 +7,7 @@ support, and message an assigned dietitian for anything that needs a human.
 Built with Flutter, Supabase (Postgres + RLS + Realtime) and Gemini, running
 behind Supabase Edge Functions.
 
-> Status: working MVP. Turkish and English, both shipped from day one.
+> Status: working MVP. Bilingual UI (Turkish/English) from the first release.
 
 <p align="center">
   <img src="assets/screenshots/onboarding.png"  width="185" alt="Onboarding intro" />
@@ -112,6 +112,8 @@ Function deploy, Realtime setup).
 - Dietitian registration and assignment are done server-side, not in-app
 - No food database — calories are user-entered
 - No payment or subscription layer
+- The UI is fully localised, but AI-generated content is currently Turkish only —
+  the client doesn't yet pass its locale to the Edge Function
 - Manual testing only; no automated test coverage yet
 
 ## License
