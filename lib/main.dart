@@ -27,13 +27,15 @@ Future<void> main() async {
   // uygulama yanlış dilde açılıp sonra değişmesin.
   await LocaleController.load();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 /// Uygulama genelinde kısayol.
 final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Dil tercihi değişince (LocaleController.set) tüm uygulama yeniden
