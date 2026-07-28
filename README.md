@@ -9,13 +9,18 @@ behind Supabase Edge Functions.
 
 > Status: working MVP. Turkish and English, both shipped from day one.
 
-<!-- Ekran görüntülerini assets/screenshots/ altına koyup bu bloğu aç:
 <p align="center">
-  <img src="assets/screenshots/onboarding.png" width="200" />
-  <img src="assets/screenshots/plan.png"       width="200" />
-  <img src="assets/screenshots/emergency.png"  width="200" />
+  <img src="assets/screenshots/onboarding.png"  width="185" alt="Onboarding intro" />
+  <img src="assets/screenshots/diet-plan.png"   width="185" alt="AI-generated diet plan" />
+  <img src="assets/screenshots/emergency-2.png" width="185" alt="Emergency support flow" />
+  <img src="assets/screenshots/tracking.png"    width="185" alt="Food and water tracking" />
 </p>
--->
+
+<p align="center">
+  <img src="assets/screenshots/demo.gif" width="240" alt="App walkthrough" />
+</p>
+
+<p align="center"><sub>Onboarding · AI meal plan · emergency support · daily tracking</sub></p>
 
 ## Why this project
 

@@ -75,6 +75,9 @@ supabase/.temp/
 .cursor/
 .aider*
 
+# Ham ekran kayıtları — GIF'e çevrilip repoya yalnızca GIF girer
+assets/screenshots/*.mp4
+
 # docs/ içinde yalnızca kalıcı teknik dokümanlar paylaşılır.
 # Çalışma notları, iç yol haritası ve AI prompt taslakları yerelde kalır.
 docs/*
