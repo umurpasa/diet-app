@@ -34,3 +34,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    # Aydınlatma metni / gizlilik politikası — tek kaynak (site de aynı dosyaları kullanır).
+    - legal/
+    # google_fonts runtime indirmesi kapalı (gizlilik): fontlar pakete gömülü.
+    - assets/google_fonts/

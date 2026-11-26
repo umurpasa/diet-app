@@ -107,11 +107,15 @@ class OnbTextField extends StatelessWidget {
     this.maxLines = 1,
     this.textCapitalization = TextCapitalization.none,
     this.obscureText = false,
+    this.errorText,
   });
 
   final TextEditingController controller;
   final String label;
   final String? hint;
+
+  /// Doluysa alanın altında hata metni (ör. yaş aralığı).
+  final String? errorText;
   final TextInputType? keyboardType;
   final int maxLines;
   final TextCapitalization textCapitalization;
@@ -134,6 +138,8 @@ class OnbTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
+        errorText: errorText,
+        errorMaxLines: 2,
         hintStyle: const TextStyle(color: AppColors.textSecondary),
         filled: true,
         fillColor: AppColors.background,
@@ -142,6 +148,14 @@ class OnbTextField extends StatelessWidget {
         border: noBorder,
         enabledBorder: noBorder,
         focusedBorder: noBorder,
+        errorBorder: const OutlineInputBorder(
+          borderRadius: radius,
+          borderSide: BorderSide(color: AppColors.sos),
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderRadius: radius,
+          borderSide: BorderSide(color: AppColors.sos, width: 1.5),
+        ),
       ),
     );
   }

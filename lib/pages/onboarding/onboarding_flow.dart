@@ -185,7 +185,8 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     switch (_page) {
       case 1:
         return _nameController.text.trim().isNotEmpty &&
-            (int.tryParse(_ageController.text.trim()) ?? 0) > 0 &&
+            OnboardingData.isValidAge(
+                int.tryParse(_ageController.text.trim())) &&
             _data.sex != null;
       case 2:
         return _numOk(_heightController, required: true) &&
@@ -200,9 +201,9 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         }
         return true;
       case 4:
-        // Alerji adımı "yok" ya da en az bir seçim olmadan geçilemez
-        // (güvenlik — AI planı için kritik). Kronik durumlar da aynı.
-        if (_data.conditions.isEmpty || _data.allergies.isEmpty) return false;
+        // Sağlık adımı isteğe bağlı (KVKK — açık rıza, veri minimizasyonu):
+        // boş geçilebilir. Yalnız "diğer" seçiliyse açıklaması zorunlu.
+        // Kural profile_page `_SectionEditSheetState._canSave` ile aynı.
         if (_data.conditions.contains('other') &&
             _conditionsOtherController.text.trim().isEmpty) {
           return false;
@@ -341,6 +342,17 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOutCubic,
     );
+  }
+
+  /// "Paylaşmak istemiyorum, atla": sağlık seçimlerini temizler ve adımı
+  /// boş olarak kaydedip geçer (önceden dolu kolon/anahtarlar temizlenir).
+  Future<void> _skipHealth() async {
+    if (_saving) return;
+    _data.clearHealth();
+    _conditionsOtherController.clear();
+    _medicationsController.clear();
+    _allergiesOtherController.clear();
+    await _next();
   }
 
   Future<void> _next() async {
@@ -526,6 +538,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
                                 allergiesOtherController:
                                     _allergiesOtherController,
                                 onChanged: _onFieldChanged,
+                                onSkip: _skipHealth,
                               )),
                           _wrapStep(
                               5,

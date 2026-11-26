@@ -1,11 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'config/app_theme.dart';
 import 'config/features.dart';
+import 'config/legal.dart';
 import 'config/locale_controller.dart';
 import 'config/supabase_config.dart';
 import 'l10n/app_localizations.dart';
 import 'pages/auth_page.dart';
+import 'pages/consent_page.dart';
 import 'pages/diet_plan_page.dart';
 import 'pages/ai_chat_page.dart';
 import 'pages/food_tracking_page.dart';
@@ -14,10 +19,19 @@ import 'pages/dietitian_chat_page.dart';
 import 'pages/emergency_page.dart';
 import 'pages/onboarding/onboarding_data.dart';
 import 'pages/onboarding/onboarding_flow.dart';
+import 'widgets/feature_disabled_view.dart';
 import 'widgets/mesh_blob.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Gizlilik: fontlar çalışma anında Google sunucularından indirilmez
+  // (kullanıcının IP'si Google'a gitmesin); assets/google_fonts/'tan gelir.
+  GoogleFonts.config.allowRuntimeFetching = false;
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('assets/google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
 
   await Supabase.initialize(
     url: SupabaseConfig.url,
@@ -91,11 +105,17 @@ class AuthGate extends StatelessWidget {
   }
 }
 
-/// Oturum açıldığında bir kez `health_profiles.preferences`'ı okuyup karar
-/// verir: `onboarding_completed == true` ise [HomeScreen], değilse (kayıt
-/// yok dahil) [OnboardingFlow] — kısmi kayıt varsa kaldığı adımdan. Okuma
-/// hatasında (offline vb.) HomeScreen'e düşer, kullanıcı onboarding'e
-/// hapsedilmez.
+/// Oturum açıldığında bir kez karar verir:
+///
+/// 1. **Rıza kapısı:** `profiles.consent_version != Legal.consentVersion`
+///    ise (hiç rıza yok ya da metin sürümü değişmiş) önce [ConsentPage] —
+///    onboarding'i bitirmiş mevcut hesaplar dahil. Profil okunamazsa
+///    (offline vb.) ne rıza ne ana ekran: "Bağlantı kurulamadı" + "Tekrar
+///    dene" — rıza atlanmaz, rıza vermiş kullanıcı da boşuna rıza görmez.
+/// 2. `health_profiles.preferences.onboarding_completed == true` ise
+///    [HomeScreen], değilse (kayıt yok dahil) [OnboardingFlow] — kısmi kayıt
+///    varsa kaldığı adımdan. Bu okumanın hatasında (offline vb.) HomeScreen'e
+///    düşer, kullanıcı onboarding'e hapsedilmez.
 class OnboardingGate extends StatefulWidget {
   const OnboardingGate({super.key, required this.userId});
 
@@ -107,6 +127,10 @@ class OnboardingGate extends StatefulWidget {
 
 class _OnboardingGateState extends State<OnboardingGate> {
   bool _loading = true;
+  bool _needsConsent = false;
+
+  /// Profil (rıza durumu) okunamadı → bağlantı hatası + tekrar dene.
+  bool _profileError = false;
   bool _showOnboarding = false;
   int _initialPage = 0;
   int _homeTab = 0;
@@ -120,6 +144,28 @@ class _OnboardingGateState extends State<OnboardingGate> {
   }
 
   Future<void> _check() async {
+    // 1) Rıza + ad (onboarding'e devamda isim alanı dolu gelsin diye).
+    String? fullName;
+    try {
+      final profile = await supabase
+          .from('profiles')
+          .select('full_name, consent_version')
+          .eq('id', widget.userId)
+          .maybeSingle();
+      fullName = profile?['full_name'] as String?;
+      _needsConsent = profile?['consent_version'] != Legal.consentVersion;
+    } catch (_) {
+      // Rıza durumu bilinmiyor: ne atlat ne de boşuna sor — tekrar denet.
+      if (mounted) {
+        setState(() {
+          _profileError = true;
+          _loading = false;
+        });
+      }
+      return;
+    }
+
+    // 2) Onboarding durumu.
     try {
       final row = await supabase
           .from('health_profiles')
@@ -141,23 +187,13 @@ class _OnboardingGateState extends State<OnboardingGate> {
           ? (savedStep + 1).clamp(1, 8)
           : 0;
 
-      // Geri dönülürse isim alanı dolu gelsin diye kayıtlı ad da çekilir.
-      String? fullName;
-      if (resumePage > 0) {
-        final profile = await supabase
-            .from('profiles')
-            .select('full_name')
-            .eq('id', widget.userId)
-            .maybeSingle();
-        fullName = profile?['full_name'] as String?;
-      }
-
       if (mounted) {
         setState(() {
           _data = OnboardingData.restore(
             preferences: prefs,
             row: row,
-            fullName: fullName,
+            // Geri dönülürse isim alanı dolu gelsin (yalnız kısmi kayıtta).
+            fullName: resumePage > 0 ? fullName : null,
           );
           _preferences = prefs;
           _initialPage = resumePage;
@@ -176,6 +212,35 @@ class _OnboardingGateState extends State<OnboardingGate> {
     if (_loading) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      );
+    }
+    if (_profileError) {
+      final l10n = AppLocalizations.of(context)!;
+      return Scaffold(
+        body: SafeArea(
+          child: FeatureDisabledView(
+            icon: Icons.wifi_off_rounded,
+            title: l10n.gateOfflineTitle,
+            body: l10n.gateOfflineBody,
+            action: FilledButton(
+              onPressed: () {
+                setState(() {
+                  _profileError = false;
+                  _loading = true;
+                });
+                _check();
+              },
+              child: Text(l10n.commonRetry),
+            ),
+          ),
+        ),
+      );
+    }
+    // Rıza kapısı: onboarding'den ve ana ekrandan önce.
+    if (_needsConsent) {
+      return ConsentPage(
+        userId: widget.userId,
+        onAccepted: () => setState(() => _needsConsent = false),
       );
     }
     if (_showOnboarding) {

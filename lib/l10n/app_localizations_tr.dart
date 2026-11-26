@@ -260,7 +260,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get onbHealthWhy =>
-      'Kronik durumlar ve alerjiler, planının senin için güvenli olmasını sağlayan en önemli bilgiler.';
+      'Bu bilgiler isteğe bağlı. Paylaşırsan planının senin için güvenli olmasına yardımcı olur; paylaşmak istemezsen atlayabilirsin.';
 
   @override
   String get onbConditionsLabel => 'Kronik bir durumun var mı?';
@@ -1126,4 +1126,91 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get dcComingSoonTitle => 'Diyetisyen desteği — yakında';
+
+  @override
+  String get legalTitle => 'Aydınlatma metni';
+
+  @override
+  String get legalEyebrow => 'Gizlilik';
+
+  @override
+  String get legalLoadFailed => 'Metin yüklenemedi.';
+
+  @override
+  String get consentEyebrow => 'Başlamadan önce';
+
+  @override
+  String get consentTitle => 'Verilerin, senin kontrolünde';
+
+  @override
+  String get consentIntro =>
+      'Hachibu sağlık verisi işlediği için açık rızanı istiyoruz. Kısaca:';
+
+  @override
+  String get consentPointData =>
+      'Yaş, cinsiyet, boy, kilo ve vücut ölçülerini; paylaşmayı seçersen kronik durum, ilaç ve alerji bilgilerini işliyoruz.';
+
+  @override
+  String get consentPointStorage =>
+      'Verilerin Almanya\'daki (Frankfurt) Supabase sunucularında, yani yurt dışında saklanır.';
+
+  @override
+  String get consentPointNoSharing =>
+      'Verilerin kimseyle paylaşılmaz, satılmaz ve hiçbir yapay zekâ hizmetine gönderilmez.';
+
+  @override
+  String get consentPointWithdraw =>
+      'Rızanı istediğin an geri çekebilirsin: hesabını silmen yeterli, tüm verilerin kalıcı olarak silinir.';
+
+  @override
+  String get consentReadNotice => 'Aydınlatma metnini oku';
+
+  @override
+  String get consentCheckbox =>
+      'Aydınlatma metnini okudum; sağlık verilerimin bu metinde açıklanan şekilde işlenmesine ve yurt dışındaki sunucularda saklanmasına açık rıza veriyorum.';
+
+  @override
+  String get consentContinue => 'Devam et';
+
+  @override
+  String get consentDecline => 'Kabul etmiyorum — çıkış yap';
+
+  @override
+  String get consentDeclineTitle => 'Çıkış yapılsın mı?';
+
+  @override
+  String get consentDeclineBody =>
+      'Açık rızan olmadan Hachibu sağlık verilerini işleyemez, bu yüzden uygulamayı kullanamazsın. Fikrini değiştirirsen tekrar giriş yapabilirsin.';
+
+  @override
+  String get consentDeclineConfirm => 'Çıkış yap';
+
+  @override
+  String get consentSaveFailed =>
+      'Onayın kaydedilemedi. Bağlantını kontrol edip tekrar dene.';
+
+  @override
+  String get onbHealthSkip => 'Paylaşmak istemiyorum, atla';
+
+  @override
+  String get onbNotShared => 'Paylaşılmadı';
+
+  @override
+  String get onbSummaryHealth => 'Kronik durum / ilaç';
+
+  @override
+  String get onbAgeUnder18 => 'Hachibu 18 yaşından küçükler için tasarlanmadı.';
+
+  @override
+  String get onbAgeOutOfRange => 'Geçerli bir yaş gir (18–120).';
+
+  @override
+  String get profLegalNotice => 'Gizlilik ve aydınlatma metni';
+
+  @override
+  String get gateOfflineTitle => 'Bağlantı kurulamadı';
+
+  @override
+  String get gateOfflineBody =>
+      'Hesap bilgilerin yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.';
 }

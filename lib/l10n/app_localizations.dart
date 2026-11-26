@@ -575,7 +575,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbHealthWhy.
   ///
   /// In tr, this message translates to:
-  /// **'Kronik durumlar ve alerjiler, planının senin için güvenli olmasını sağlayan en önemli bilgiler.'**
+  /// **'Bu bilgiler isteğe bağlı. Paylaşırsan planının senin için güvenli olmasına yardımcı olur; paylaşmak istemezsen atlayabilirsin.'**
   String get onbHealthWhy;
 
   /// No description provided for @onbConditionsLabel.
@@ -2179,6 +2179,162 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Diyetisyen desteği — yakında'**
   String get dcComingSoonTitle;
+
+  /// No description provided for @legalTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aydınlatma metni'**
+  String get legalTitle;
+
+  /// No description provided for @legalEyebrow.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gizlilik'**
+  String get legalEyebrow;
+
+  /// No description provided for @legalLoadFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Metin yüklenemedi.'**
+  String get legalLoadFailed;
+
+  /// No description provided for @consentEyebrow.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başlamadan önce'**
+  String get consentEyebrow;
+
+  /// No description provided for @consentTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Verilerin, senin kontrolünde'**
+  String get consentTitle;
+
+  /// No description provided for @consentIntro.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hachibu sağlık verisi işlediği için açık rızanı istiyoruz. Kısaca:'**
+  String get consentIntro;
+
+  /// No description provided for @consentPointData.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yaş, cinsiyet, boy, kilo ve vücut ölçülerini; paylaşmayı seçersen kronik durum, ilaç ve alerji bilgilerini işliyoruz.'**
+  String get consentPointData;
+
+  /// No description provided for @consentPointStorage.
+  ///
+  /// In tr, this message translates to:
+  /// **'Verilerin Almanya\'daki (Frankfurt) Supabase sunucularında, yani yurt dışında saklanır.'**
+  String get consentPointStorage;
+
+  /// No description provided for @consentPointNoSharing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Verilerin kimseyle paylaşılmaz, satılmaz ve hiçbir yapay zekâ hizmetine gönderilmez.'**
+  String get consentPointNoSharing;
+
+  /// No description provided for @consentPointWithdraw.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rızanı istediğin an geri çekebilirsin: hesabını silmen yeterli, tüm verilerin kalıcı olarak silinir.'**
+  String get consentPointWithdraw;
+
+  /// No description provided for @consentReadNotice.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aydınlatma metnini oku'**
+  String get consentReadNotice;
+
+  /// No description provided for @consentCheckbox.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aydınlatma metnini okudum; sağlık verilerimin bu metinde açıklanan şekilde işlenmesine ve yurt dışındaki sunucularda saklanmasına açık rıza veriyorum.'**
+  String get consentCheckbox;
+
+  /// No description provided for @consentContinue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devam et'**
+  String get consentContinue;
+
+  /// No description provided for @consentDecline.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kabul etmiyorum — çıkış yap'**
+  String get consentDecline;
+
+  /// No description provided for @consentDeclineTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çıkış yapılsın mı?'**
+  String get consentDeclineTitle;
+
+  /// No description provided for @consentDeclineBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Açık rızan olmadan Hachibu sağlık verilerini işleyemez, bu yüzden uygulamayı kullanamazsın. Fikrini değiştirirsen tekrar giriş yapabilirsin.'**
+  String get consentDeclineBody;
+
+  /// No description provided for @consentDeclineConfirm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çıkış yap'**
+  String get consentDeclineConfirm;
+
+  /// No description provided for @consentSaveFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Onayın kaydedilemedi. Bağlantını kontrol edip tekrar dene.'**
+  String get consentSaveFailed;
+
+  /// No description provided for @onbHealthSkip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Paylaşmak istemiyorum, atla'**
+  String get onbHealthSkip;
+
+  /// No description provided for @onbNotShared.
+  ///
+  /// In tr, this message translates to:
+  /// **'Paylaşılmadı'**
+  String get onbNotShared;
+
+  /// No description provided for @onbSummaryHealth.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kronik durum / ilaç'**
+  String get onbSummaryHealth;
+
+  /// No description provided for @onbAgeUnder18.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hachibu 18 yaşından küçükler için tasarlanmadı.'**
+  String get onbAgeUnder18;
+
+  /// No description provided for @onbAgeOutOfRange.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçerli bir yaş gir (18–120).'**
+  String get onbAgeOutOfRange;
+
+  /// No description provided for @profLegalNotice.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gizlilik ve aydınlatma metni'**
+  String get profLegalNotice;
+
+  /// No description provided for @gateOfflineTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlantı kurulamadı'**
+  String get gateOfflineTitle;
+
+  /// No description provided for @gateOfflineBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesap bilgilerin yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.'**
+  String get gateOfflineBody;
 }
 
 class _AppLocalizationsDelegate

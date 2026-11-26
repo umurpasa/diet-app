@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../utils/error_messages.dart';
 import '../widgets/page_header.dart';
 import 'auth_page.dart' show kMinPasswordLength;
+import 'legal_page.dart';
 import 'onboarding/onboarding_data.dart';
 import 'onboarding/onboarding_steps.dart';
 import 'onboarding/onboarding_widgets.dart';
@@ -262,6 +263,10 @@ class _ProfilePageState extends State<ProfilePage> {
       return names.join(', ');
     }
 
+    // Sağlık bölümü isteğe bağlı: hiçbir şey paylaşılmadıysa "Paylaşılmadı".
+    if (_data.healthNotShared && _data.allergies.isEmpty) {
+      return l10n.onbNotShared;
+    }
     final conditions =
         multi(_data.conditions, conditionLabels, _data.conditionsOther);
     final allergies =
@@ -647,6 +652,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           _accountRow(
+            icon: Icons.privacy_tip_outlined,
+            label: l10n.profLegalNotice,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const LegalPage()),
+            ),
+          ),
+          _accountRow(
             icon: Icons.logout,
             label: l10n.profSignOut,
             color: AppColors.sos,
@@ -851,7 +863,7 @@ class _SectionEditSheetState extends State<_SectionEditSheet> {
     switch (widget.section) {
       case _Section.identity:
         return _nameC!.text.trim().isNotEmpty &&
-            (int.tryParse(_ageC!.text.trim()) ?? 0) > 0 &&
+            OnboardingData.isValidAge(int.tryParse(_ageC!.text.trim())) &&
             _d.sex != null;
       case _Section.body:
         return _numOk(_heightC!, required: true) &&
@@ -864,9 +876,8 @@ class _SectionEditSheetState extends State<_SectionEditSheet> {
         }
         return true;
       case _Section.health:
-        // Kronik durum VE alerji "yok" ya da ≥1 seçim olmadan kaydedilemez
-        // (güvenlik — AI planı için kritik), onboarding ile aynı.
-        if (_d.conditions.isEmpty || _d.allergies.isEmpty) return false;
+        // İsteğe bağlı (boş kaydedilebilir); yalnız "diğer" seçiliyse
+        // açıklaması zorunlu — onboarding `_canProceed` case 4 ile aynı.
         if (_d.conditions.contains('other') &&
             _condOtherC!.text.trim().isEmpty) {
           return false;
@@ -889,6 +900,17 @@ class _SectionEditSheetState extends State<_SectionEditSheet> {
   }
 
   // ---- Kayıt (onboarding _saveStep ile aynı mantık) ----
+
+  /// "Paylaşmak istemiyorum, atla": seçimleri temizleyip boş olarak kaydeder
+  /// (health_history / allergies / ilgili preferences anahtarları temizlenir).
+  Future<void> _skipHealth() async {
+    if (_saving) return;
+    _d.clearHealth();
+    _condOtherC!.clear();
+    _medsC!.clear();
+    _allergyOtherC!.clear();
+    await _save();
+  }
 
   void _showError(String text) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -1006,6 +1028,7 @@ class _SectionEditSheetState extends State<_SectionEditSheet> {
           medicationsController: _medsC!,
           allergiesOtherController: _allergyOtherC!,
           onChanged: _onChanged,
+          onSkip: _skipHealth,
         );
       case _Section.lifestyle:
         return OnbLifestyleContent(data: _d, onChanged: _onChanged);

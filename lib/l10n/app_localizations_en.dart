@@ -261,7 +261,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onbHealthWhy =>
-      'Chronic conditions and allergies are the most important details for keeping your plan safe.';
+      'This step is optional. Sharing helps keep your plan safe for you, but you can skip it if you\'d rather not.';
 
   @override
   String get onbConditionsLabel => 'Do you have any chronic conditions?';
@@ -1133,4 +1133,91 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dcComingSoonTitle => 'Dietitian support — coming soon';
+
+  @override
+  String get legalTitle => 'Privacy policy';
+
+  @override
+  String get legalEyebrow => 'Privacy';
+
+  @override
+  String get legalLoadFailed => 'Couldn\'t load the text.';
+
+  @override
+  String get consentEyebrow => 'Before we start';
+
+  @override
+  String get consentTitle => 'Your data, in your hands';
+
+  @override
+  String get consentIntro =>
+      'Hachibu processes health data, so we need your explicit consent. In short:';
+
+  @override
+  String get consentPointData =>
+      'We process your age, sex, height, weight and body measurements; and, if you choose to share them, chronic conditions, medications and allergies.';
+
+  @override
+  String get consentPointStorage =>
+      'Your data is stored on Supabase servers in Frankfurt, Germany — that is, outside Turkey.';
+
+  @override
+  String get consentPointNoSharing =>
+      'Your data is never shared, never sold and never sent to any AI service.';
+
+  @override
+  String get consentPointWithdraw =>
+      'You can withdraw your consent at any time by deleting your account; all your data is then permanently erased.';
+
+  @override
+  String get consentReadNotice => 'Read the privacy policy';
+
+  @override
+  String get consentCheckbox =>
+      'I have read the privacy policy, and I give my explicit consent to my health data being processed as described in it and stored on servers outside Turkey.';
+
+  @override
+  String get consentContinue => 'Continue';
+
+  @override
+  String get consentDecline => 'I don\'t agree — sign out';
+
+  @override
+  String get consentDeclineTitle => 'Sign out?';
+
+  @override
+  String get consentDeclineBody =>
+      'Without your explicit consent Hachibu can\'t process your health data, so you can\'t use the app. You can sign in again if you change your mind.';
+
+  @override
+  String get consentDeclineConfirm => 'Sign out';
+
+  @override
+  String get consentSaveFailed =>
+      'Couldn\'t save your consent. Check your connection and try again.';
+
+  @override
+  String get onbHealthSkip => 'I\'d rather not share — skip';
+
+  @override
+  String get onbNotShared => 'Not shared';
+
+  @override
+  String get onbSummaryHealth => 'Conditions / medications';
+
+  @override
+  String get onbAgeUnder18 => 'Hachibu isn\'t designed for anyone under 18.';
+
+  @override
+  String get onbAgeOutOfRange => 'Enter a valid age (18–120).';
+
+  @override
+  String get profLegalNotice => 'Privacy & information notice';
+
+  @override
+  String get gateOfflineTitle => 'Couldn\'t connect';
+
+  @override
+  String get gateOfflineBody =>
+      'We couldn\'t load your account details. Check your internet connection and try again.';
 }

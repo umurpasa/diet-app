@@ -27,6 +27,18 @@ class OnbIdentityContent extends StatelessWidget {
   final TextEditingController ageController;
   final VoidCallback onChanged;
 
+  /// Yaş 18–120 dışındaysa açık mesaj (yazarken tek hanede uyarmaz).
+  String? _ageError(AppLocalizations l10n) {
+    final text = ageController.text.trim();
+    if (text.isEmpty) return null;
+    final age = int.tryParse(text);
+    if (age != null && OnboardingData.isValidAge(age)) return null;
+    if (age != null && age > 0 && age < OnboardingData.minAge) {
+      return text.length < 2 ? null : l10n.onbAgeUnder18;
+    }
+    return l10n.onbAgeOutOfRange;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -45,6 +57,7 @@ class OnbIdentityContent extends StatelessWidget {
           controller: ageController,
           label: l10n.onbAgeLabel,
           keyboardType: TextInputType.number,
+          errorText: _ageError(l10n),
         ),
         OnbSectionLabel(label: l10n.onbSexLabel),
         OnbChipGroup(
@@ -222,6 +235,7 @@ class OnbHealthContent extends StatelessWidget {
     required this.medicationsController,
     required this.allergiesOtherController,
     required this.onChanged,
+    this.onSkip,
   });
 
   final OnboardingData data;
@@ -230,6 +244,10 @@ class OnbHealthContent extends StatelessWidget {
   final TextEditingController allergiesOtherController;
   final VoidCallback onChanged;
 
+  /// "Paylaşmak istemiyorum, atla": çağıran seçimleri temizler ve adımı
+  /// geçer/kaydeder. Null ise seçenek gösterilmez.
+  final VoidCallback? onSkip;
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -237,6 +255,21 @@ class OnbHealthContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnbStepHeader(title: l10n.onbHealthTitle, why: l10n.onbHealthWhy),
+        if (onSkip != null) ...[
+          const SizedBox(height: 14),
+          // Belirgin ama sakin: tonal hap, uyarı rengi yok.
+          TextButton.icon(
+            onPressed: onSkip,
+            style: TextButton.styleFrom(
+              backgroundColor: AppColors.surface,
+              foregroundColor: AppColors.primary,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            ),
+            icon: const Icon(Icons.visibility_off_outlined, size: 18),
+            label: Text(l10n.onbHealthSkip),
+          ),
+        ],
         OnbSectionLabel(label: l10n.onbConditionsLabel),
         OnbMultiChipGroup(
           options: [
@@ -545,7 +578,33 @@ class OnbSummaryContent extends StatelessWidget {
     return parts.join(' · ');
   }
 
+  /// Kronik durum + ilaç; hiçbiri paylaşılmadıysa "Paylaşılmadı".
+  String _healthText(AppLocalizations l10n) {
+    if (data.healthNotShared) return l10n.onbNotShared;
+    final labels = {
+      'diabetes': l10n.onbConditionDiabetes,
+      'insulin_resistance': l10n.onbConditionInsulinResistance,
+      'hypertension': l10n.onbConditionHypertension,
+      'thyroid': l10n.onbConditionThyroid,
+      'cholesterol': l10n.onbConditionCholesterol,
+    };
+    final parts = <String>[
+      if (data.conditions.contains('none'))
+        l10n.onbOptionNone
+      else ...[
+        for (final c in data.conditions)
+          if (labels.containsKey(c)) labels[c]!,
+        if (data.conditions.contains('other') &&
+            data.conditionsOther.trim().isNotEmpty)
+          data.conditionsOther.trim(),
+      ],
+      if (data.medications.trim().isNotEmpty) data.medications.trim(),
+    ];
+    return parts.isEmpty ? l10n.onbNotShared : parts.join(', ');
+  }
+
   String _allergyText(AppLocalizations l10n) {
+    if (data.allergies.isEmpty) return l10n.onbNotShared;
     if (data.allergies.contains('none')) return l10n.onbOptionNone;
     final labels = {
       'gluten': l10n.onbAllergyGluten,
@@ -622,6 +681,7 @@ class OnbSummaryContent extends StatelessWidget {
               if (body.isNotEmpty) _row(l10n.onbSummaryBody, body),
               if (data.goalType != null)
                 _row(l10n.onbSummaryGoal, _goalText(l10n)),
+              _row(l10n.onbSummaryHealth, _healthText(l10n)),
             ],
           ),
         ),

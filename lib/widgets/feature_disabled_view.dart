@@ -3,18 +3,24 @@ import '../config/app_theme.dart';
 
 /// Store sürümünde kapalı bir özellik için sakin bilgi durumu
 /// (bkz. `lib/config/features.dart`): yuvarlak ikon + başlık + tek satır
-/// açıklama. Buton/aksiyon yok — kullanıcı ölü bir akışa yönlendirilmez.
+/// açıklama. Kapalı özelliklerde buton/aksiyon yok — kullanıcı ölü bir
+/// akışa yönlendirilmez. Aynı durum görünümü bağlantı hatasında da
+/// kullanılır; orada [action] (ör. "Tekrar dene") verilir.
 class FeatureDisabledView extends StatelessWidget {
   const FeatureDisabledView({
     super.key,
     required this.icon,
     required this.title,
     required this.body,
+    this.action,
   });
 
   final IconData icon;
   final String title;
   final String body;
+
+  /// Açıklamanın altında isteğe bağlı aksiyon.
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +59,10 @@ class FeatureDisabledView extends StatelessWidget {
                 color: AppColors.textSecondary,
               ),
             ),
+            if (action != null) ...[
+              const SizedBox(height: 24),
+              action!,
+            ],
           ],
         ),
       ),

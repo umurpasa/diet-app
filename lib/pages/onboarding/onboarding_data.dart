@@ -66,6 +66,28 @@ class OnboardingData {
 
   OnboardingData();
 
+  /// Yaş sınırı — aydınlatma metni: "18 yaşından küçükler için değildir".
+  static const int minAge = 18;
+  static const int maxAge = 120;
+
+  /// Onboarding kimlik adımı ve profil düzenleme aynı kuralı kullanır.
+  static bool isValidAge(int? age) =>
+      age != null && age >= minAge && age <= maxAge;
+
+  /// Sağlık adımı isteğe bağlı: "Paylaşmak istemiyorum, atla" seçimleri
+  /// ve serbest metinleri temizler (kayıtta ilgili kolon/anahtarlar boşalır).
+  void clearHealth() {
+    conditions = {};
+    conditionsOther = '';
+    medications = '';
+    allergies = {};
+    allergiesOther = '';
+  }
+
+  /// Hiç sağlık bilgisi paylaşılmamış mı (özet/profilde "Paylaşılmadı")?
+  bool get healthNotShared =>
+      conditions.isEmpty && medications.trim().isEmpty;
+
   /// Hedef kilo ve tempo yalnızca ver/al hedeflerinde sorulur.
   bool get goalNeedsDetails => goalType == 'lose' || goalType == 'gain';
 
@@ -245,9 +267,14 @@ class OnboardingData {
   }
 
   /// Örn. "Kronik durumlar: diyabet, tiroid. Düzenli ilaç: metformin."
-  String healthSummaryTr() {
+  /// Hiçbir şey paylaşılmadıysa null (kolon temizlenir — "yok" ile
+  /// "paylaşılmadı" karışmasın).
+  String? healthSummaryTr() {
+    if (healthNotShared) return null;
     final parts = <String>[];
-    if (conditions.contains('none') || conditions.isEmpty) {
+    if (conditions.isEmpty) {
+      parts.add('Kronik durum belirtilmedi');
+    } else if (conditions.contains('none')) {
       parts.add('Kronik rahatsızlık yok');
     } else {
       final names = [
@@ -265,7 +292,9 @@ class OnboardingData {
   }
 
   /// Örn. "Alerji/intolerans: gluten, laktoz." — "yok" cevabı da yazılır.
-  String allergySummaryTr() {
+  /// Seçim yoksa (paylaşılmadı) null.
+  String? allergySummaryTr() {
+    if (allergies.isEmpty) return null;
     if (allergies.contains('none')) return 'Bilinen alerji/intolerans yok.';
     final names = [
       for (final a in allergies)
