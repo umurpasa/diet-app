@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../config/app_theme.dart';
+import '../config/features.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/error_messages.dart';
+import '../widgets/feature_disabled_view.dart';
 import '../widgets/page_header.dart';
 
 /// Kullanıcı ↔ diyetisyen mesajlaşması (Supabase Realtime).
@@ -46,7 +48,8 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
   @override
   void initState() {
     super.initState();
-    _init();
+    // Store sürümü: veri çekme / Realtime aboneliği yok; sayfa "yakında".
+    if (Features.dietitianEnabled) _init();
   }
 
   @override
@@ -62,6 +65,7 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
 
   /// Rolü okur, karşı tarafı bulur, mesajları yükler ve Realtime'a abone olur.
   Future<void> _init() async {
+    if (!Features.dietitianEnabled) return;
     final userId = _userId;
     if (userId == null) {
       setState(() => _isLoading = false);
@@ -132,7 +136,9 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
   Future<void> _loadMessages() async {
     final userId = _userId;
     final partnerId = _partnerId;
-    if (userId == null || partnerId == null) return;
+    if (!Features.dietitianEnabled || userId == null || partnerId == null) {
+      return;
+    }
 
     final rows = await _supabase
         .from('messages')
@@ -159,7 +165,9 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
   Future<void> _markIncomingRead() async {
     final userId = _userId;
     final partnerId = _partnerId;
-    if (userId == null || partnerId == null) return;
+    if (!Features.dietitianEnabled || userId == null || partnerId == null) {
+      return;
+    }
 
     try {
       await _supabase
@@ -176,6 +184,7 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
   /// Bana gelen INSERT'lere abone olur; karşı taraftan yeni mesaj
   /// düşünce listeye ekler.
   void _subscribe(String userId, String partnerId) {
+    if (!Features.dietitianEnabled) return;
     _channel = _supabase
         .channel('dietitian-chat-$userId')
         .onPostgresChanges(
@@ -202,7 +211,12 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
     final userId = _userId;
     final partnerId = _partnerId;
     final body = _messageController.text.trim();
-    if (userId == null || partnerId == null || body.isEmpty) return;
+    if (!Features.dietitianEnabled ||
+        userId == null ||
+        partnerId == null ||
+        body.isEmpty) {
+      return;
+    }
 
     setState(() => _isSending = true);
     try {
@@ -260,6 +274,27 @@ class _DietitianChatPageState extends State<DietitianChatPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
+    if (!Features.dietitianEnabled) {
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              PageHeader(title: l10n.dcTitle, profileName: widget.profileName),
+              Expanded(
+                child: FeatureDisabledView(
+                  icon: Icons.support_agent,
+                  title: l10n.dcComingSoonTitle,
+                  body: l10n.featureDisabledBody,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     final title =
         _partnerName ?? (_isDietitian ? l10n.dcTitleDietitian : l10n.dcTitle);
 

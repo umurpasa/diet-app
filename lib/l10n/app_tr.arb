@@ -23,8 +23,8 @@
   "authEmailRequired": "E-posta gerekli",
   "authEmailInvalid": "Geçerli bir e-posta gir",
   "authPasswordRequired": "Şifre gerekli",
-  "authPasswordTooShort": "Şifre en az 6 karakter olmalı",
-  "authPasswordHelper": "En az 6 karakter",
+  "authPasswordTooShort": "Şifre en az 8 karakter olmalı",
+  "authPasswordHelper": "En az 8 karakter",
   "authLoginButton": "Giriş yap",
   "authSignupButton": "Kayıt ol",
   "authToggleToSignup": "Hesabın yok mu? Kayıt ol",
@@ -501,5 +501,10 @@
   "emOutcomeAteAnyway": "Yine de yedim, sorun değil",
 
   "emThanksTitle": "Teşekkürler 💚",
-  "emThanksBody": "Kriz anında durup buraya gelmek başlı başına bir kazanım. Kendine iyi davranmaya devam et — yarın yeni bir gün."
+  "emThanksBody": "Kriz anında durup buraya gelmek başlı başına bir kazanım. Kendine iyi davranmaya devam et — yarın yeni bir gün.",
+
+  "featureDisabledBody": "Bu özellik demo sürümünde kapalı.",
+  "aiChatDisabledTitle": "AI asistan şu an aktif değil",
+  "dpAiDisabledTitle": "AI diyet planı şu an aktif değil",
+  "dcComingSoonTitle": "Diyetisyen desteği — yakında"
 }

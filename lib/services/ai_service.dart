@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../config/features.dart';
 
 /// AI servis katmanı.
 ///
@@ -48,6 +49,9 @@ class AIService {
   }
 
   Future<dynamic> _invoke(Map<String, dynamic> body) async {
+    // Store sürümünde AI kapalı: Edge Function hiçbir koşulda çağrılmaz
+    // (arayüz zaten gizliyor; bu, ikinci savunma hattı).
+    if (!Features.aiEnabled) throw AIException.disabled();
     try {
       final res = await _supabase.functions.invoke('ai', body: body);
       return res.data;
@@ -73,7 +77,18 @@ class AIException implements Exception {
   /// Günlük kullanım limiti aşıldıysa true.
   final bool isLimit;
 
-  AIException(this.message, {this.isLimit = false});
+  /// Özellik bu sürümde kapalıysa true ([Features.aiEnabled] == false).
+  final bool isDisabled;
+
+  AIException(this.message, {this.isLimit = false, this.isDisabled = false});
+
+  /// AI kapalıyken fırlatılır. Arayüz bunu metniyle değil [isDisabled]
+  /// ile tanır ve l10n'li "aktif değil" durumunu gösterir; mesaj yalnızca
+  /// log/geliştirici içindir.
+  AIException.disabled()
+      : message = 'AI features are disabled in this build.',
+        isLimit = false,
+        isDisabled = true;
 
   @override
   String toString() => message;

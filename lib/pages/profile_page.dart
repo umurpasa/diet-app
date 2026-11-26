@@ -5,6 +5,7 @@ import '../config/locale_controller.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/error_messages.dart';
 import '../widgets/page_header.dart';
+import 'auth_page.dart' show kMinPasswordLength;
 import 'onboarding/onboarding_data.dart';
 import 'onboarding/onboarding_steps.dart';
 import 'onboarding/onboarding_widgets.dart';
@@ -1093,7 +1094,7 @@ class _PasswordSheetState extends State<_PasswordSheet> {
 
   void _onChanged() => setState(() {});
 
-  bool get _lengthOk => _passwordC.text.length >= 6;
+  bool get _lengthOk => _passwordC.text.length >= kMinPasswordLength;
   bool get _match =>
       _repeatC.text.isNotEmpty && _passwordC.text == _repeatC.text;
   bool get _showMismatch => _repeatC.text.isNotEmpty && !_match;

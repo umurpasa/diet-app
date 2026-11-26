@@ -66,10 +66,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get authPasswordRequired => 'Şifre gerekli';
 
   @override
-  String get authPasswordTooShort => 'Şifre en az 6 karakter olmalı';
+  String get authPasswordTooShort => 'Şifre en az 8 karakter olmalı';
 
   @override
-  String get authPasswordHelper => 'En az 6 karakter';
+  String get authPasswordHelper => 'En az 8 karakter';
 
   @override
   String get authLoginButton => 'Giriş yap';
@@ -1114,4 +1114,16 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get emThanksBody =>
       'Kriz anında durup buraya gelmek başlı başına bir kazanım. Kendine iyi davranmaya devam et — yarın yeni bir gün.';
+
+  @override
+  String get featureDisabledBody => 'Bu özellik demo sürümünde kapalı.';
+
+  @override
+  String get aiChatDisabledTitle => 'AI asistan şu an aktif değil';
+
+  @override
+  String get dpAiDisabledTitle => 'AI diyet planı şu an aktif değil';
+
+  @override
+  String get dcComingSoonTitle => 'Diyetisyen desteği — yakında';
 }

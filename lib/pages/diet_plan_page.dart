@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../config/app_theme.dart';
+import '../config/features.dart';
 import '../l10n/app_localizations.dart';
 import '../services/ai_service.dart';
+import '../widgets/feature_disabled_view.dart';
 import '../widgets/page_header.dart';
 
 /// Kişiselleştirilmiş AI diyet planını gösterir.
@@ -35,12 +38,43 @@ class _DietPlanPageState extends State<DietPlanPage> {
   @override
   void initState() {
     super.initState();
-    // İlk açılışta önbellekteki planı getir (yoksa sunucu yeni üretir).
-    _loadPlan(forceRegenerate: false);
+    if (Features.aiEnabled) {
+      // İlk açılışta önbellekteki planı getir (yoksa sunucu yeni üretir).
+      _loadPlan(forceRegenerate: false);
+    } else {
+      _loadStoredPlan();
+    }
+  }
+
+  /// AI kapalıyken (store sürümü): daha önce üretilmiş aktif planı doğrudan
+  /// `diet_plans`'tan (RLS ile, salt okuma) çeker. Plan yoksa veya okuma
+  /// başarısızsa sayfa "AI diyet planı aktif değil" durumuna düşer.
+  Future<void> _loadStoredPlan() async {
+    final userId = Supabase.instance.client.auth.currentUser?.id;
+    if (userId == null) return;
+    setState(() => _isLoading = true);
+    try {
+      final row = await Supabase.instance.client
+          .from('diet_plans')
+          .select('plan_json')
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .order('created_at', ascending: false)
+          .limit(1)
+          .maybeSingle();
+      final planJson = row?['plan_json'];
+      if (mounted && planJson is Map) {
+        _applyPlan(Map<String, dynamic>.from(planJson));
+      }
+    } catch (_) {
+      // Okunamadı — bilgi durumu gösterilir.
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   Future<void> _loadPlan({required bool forceRegenerate}) async {
-    if (_isLoading) return;
+    if (!Features.aiEnabled || _isLoading) return;
     setState(() {
       _isLoading = true;
       _error = null;
@@ -62,7 +96,7 @@ class _DietPlanPageState extends State<DietPlanPage> {
   }
 
   Future<void> _revise(_ReviseInput input) async {
-    if (_isLoading) return;
+    if (!Features.aiEnabled || _isLoading) return;
     setState(() {
       _isLoading = true;
       _error = null;
@@ -266,7 +300,11 @@ class _DietPlanPageState extends State<DietPlanPage> {
               eyebrow: DateFormat('EEEE, d MMMM', l10n.localeName)
                   .format(DateTime.now()),
               title: l10n.dietPlanTitle,
-              actions: [if (_plan != null) _buildHeaderAction(l10n)],
+              // Revize/yenile menüsü yalnız AI açıkken (store: salt okuma).
+              actions: [
+                if (Features.aiEnabled && _plan != null)
+                  _buildHeaderAction(l10n),
+              ],
               profileName: widget.profileName,
             ),
             Expanded(child: _buildBody(l10n)),
@@ -305,6 +343,17 @@ class _DietPlanPageState extends State<DietPlanPage> {
   Widget _buildBody(AppLocalizations l10n) {
     if (_isLoading && _plan == null) {
       return const Center(child: CircularProgressIndicator());
+    }
+    if (!Features.aiEnabled) {
+      // Store sürümü: varsa eski aktif plan salt-okunur, yoksa bilgi durumu
+      // (üretme/yeniden dene butonu yok).
+      final plan = _plan;
+      if (plan != null) return _buildPlan(l10n, plan);
+      return FeatureDisabledView(
+        icon: Icons.restaurant_menu,
+        title: l10n.dpAiDisabledTitle,
+        body: l10n.featureDisabledBody,
+      );
     }
     if (_error != null) {
       return _ErrorView(

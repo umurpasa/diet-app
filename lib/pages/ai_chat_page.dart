@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../config/app_theme.dart';
+import '../config/features.dart';
 import '../l10n/app_localizations.dart';
 import '../services/ai_service.dart';
 import '../utils/error_messages.dart';
+import '../widgets/feature_disabled_view.dart';
 import '../widgets/mesh_blob.dart';
 import '../widgets/page_header.dart';
 
@@ -49,7 +51,8 @@ class _AIChatPageState extends State<AIChatPage> {
   @override
   void initState() {
     super.initState();
-    _loadHistory();
+    // AI kapalıyken geçmiş de çekilmez; sayfa yalnızca bilgi durumu gösterir.
+    if (Features.aiEnabled) _loadHistory();
   }
 
   @override
@@ -93,6 +96,7 @@ class _AIChatPageState extends State<AIChatPage> {
   }
 
   Future<void> _sendMessage() async {
+    if (!Features.aiEnabled) return;
     final message = _messageController.text.trim();
     if (message.isEmpty || _isTyping) return;
 
@@ -233,6 +237,33 @@ class _AIChatPageState extends State<AIChatPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
+    // Store sürümü: sohbet arayüzü (liste, menü, mesaj kutusu) yerine
+    // sakin bilgi durumu.
+    if (!Features.aiEnabled) {
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              PageHeader(
+                eyebrow: l10n.chatHeaderEyebrow,
+                title: l10n.chatTitle,
+                profileName: widget.profileName,
+              ),
+              Expanded(
+                child: FeatureDisabledView(
+                  icon: Icons.chat_bubble_outline,
+                  title: l10n.aiChatDisabledTitle,
+                  body: l10n.featureDisabledBody,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     final showMenu = !_isLoadingHistory && _messages.isNotEmpty;
 
     return Scaffold(

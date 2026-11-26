@@ -23,8 +23,8 @@
   "authEmailRequired": "Email is required",
   "authEmailInvalid": "Enter a valid email",
   "authPasswordRequired": "Password is required",
-  "authPasswordTooShort": "Password must be at least 6 characters",
-  "authPasswordHelper": "At least 6 characters",
+  "authPasswordTooShort": "Password must be at least 8 characters",
+  "authPasswordHelper": "At least 8 characters",
   "authLoginButton": "Sign in",
   "authSignupButton": "Sign up",
   "authToggleToSignup": "Don't have an account? Sign up",
@@ -379,5 +379,10 @@
   "emOutcomeAteAnyway": "I ate anyway — that's okay",
 
   "emThanksTitle": "Thank you 💚",
-  "emThanksBody": "Pausing in a moment of crisis and coming here is a win in itself. Keep being kind to yourself — tomorrow is a new day."
+  "emThanksBody": "Pausing in a moment of crisis and coming here is a win in itself. Keep being kind to yourself — tomorrow is a new day.",
+
+  "featureDisabledBody": "This feature is disabled in the demo version.",
+  "aiChatDisabledTitle": "AI assistant is not active right now",
+  "dpAiDisabledTitle": "AI diet plan is not active right now",
+  "dcComingSoonTitle": "Dietitian support — coming soon"
 }

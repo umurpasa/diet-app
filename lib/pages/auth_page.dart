@@ -3,6 +3,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/error_messages.dart';
 
+/// Minimum şifre uzunluğu — Supabase Auth ayarıyla (8) aynı tutulmalı.
+/// Profil > Şifre değiştir de bunu kullanır.
+const int kMinPasswordLength = 8;
+
 /// Kayıt ve giriş ekranı.
 ///
 /// Supabase e-posta + şifre auth kullanır. Tek ekranda "Giriş yap" ve
@@ -160,7 +164,9 @@ class _AuthPageState extends State<AuthPage> {
                     validator: (value) {
                       final v = value ?? '';
                       if (v.isEmpty) return l10n.authPasswordRequired;
-                      if (v.length < 6) return l10n.authPasswordTooShort;
+                      if (v.length < kMinPasswordLength) {
+                        return l10n.authPasswordTooShort;
+                      }
                       return null;
                     },
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'config/app_theme.dart';
+import 'config/features.dart';
 import 'config/locale_controller.dart';
 import 'config/supabase_config.dart';
 import 'l10n/app_localizations.dart';
@@ -20,7 +21,7 @@ Future<void> main() async {
 
   await Supabase.initialize(
     url: SupabaseConfig.url,
-    anonKey: SupabaseConfig.anonKey,
+    publishableKey: SupabaseConfig.anonKey,
   );
 
   // Kaydedilmiş dil tercihi (varsa) ilk frame'den önce yüklensin ki
@@ -224,7 +225,8 @@ class _HomeScreenState extends State<HomeScreen> {
     AIChatPage(profileName: _profileName),
     DietitianChatPage(
       profileName: _profileName,
-      onOpenAiChat: () => _onItemTapped(3),
+      // AI kapalıyken "Şimdilik Danışman'a sor" CTA'sı gizlenir (null).
+      onOpenAiChat: Features.aiEnabled ? () => _onItemTapped(3) : null,
     ),
   ];
 

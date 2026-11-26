@@ -67,10 +67,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authPasswordRequired => 'Password is required';
 
   @override
-  String get authPasswordTooShort => 'Password must be at least 6 characters';
+  String get authPasswordTooShort => 'Password must be at least 8 characters';
 
   @override
-  String get authPasswordHelper => 'At least 6 characters';
+  String get authPasswordHelper => 'At least 8 characters';
 
   @override
   String get authLoginButton => 'Sign in';
@@ -1120,4 +1120,17 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get emThanksBody =>
       'Pausing in a moment of crisis and coming here is a win in itself. Keep being kind to yourself — tomorrow is a new day.';
+
+  @override
+  String get featureDisabledBody =>
+      'This feature is disabled in the demo version.';
+
+  @override
+  String get aiChatDisabledTitle => 'AI assistant is not active right now';
+
+  @override
+  String get dpAiDisabledTitle => 'AI diet plan is not active right now';
+
+  @override
+  String get dcComingSoonTitle => 'Dietitian support — coming soon';
 }

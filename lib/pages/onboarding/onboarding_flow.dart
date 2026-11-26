@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../config/app_theme.dart';
+import '../../config/features.dart';
 import '../../l10n/app_localizations.dart';
 import '../../utils/error_messages.dart';
 import 'onboarding_data.dart';
@@ -605,14 +606,18 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
           loading: _finishingTab == 0,
           onPressed: _finishingTab == null ? () => _finish(0) : null,
         ),
-        const SizedBox(height: 12),
-        OnbSecondaryButton(
-          label: l10n.onbSummaryCreatePlan,
-          loading: _finishingTab == 1,
-          // Plan sayfası plan yoksa üretim akışını zaten gösteriyor,
-          // burada tetiklenmez.
-          onPressed: _finishingTab == null ? () => _finish(1) : null,
-        ),
+        // "İlk planımı oluştur" AI plan üretimine yönlendirir; store
+        // sürümünde (AI kapalı) gizlenir, yalnız "Başlayalım" kalır.
+        if (Features.aiEnabled) ...[
+          const SizedBox(height: 12),
+          OnbSecondaryButton(
+            label: l10n.onbSummaryCreatePlan,
+            loading: _finishingTab == 1,
+            // Plan sayfası plan yoksa üretim akışını zaten gösteriyor,
+            // burada tetiklenmez.
+            onPressed: _finishingTab == null ? () => _finish(1) : null,
+          ),
+        ],
       ],
     );
   }

@@ -215,13 +215,13 @@ abstract class AppLocalizations {
   /// No description provided for @authPasswordTooShort.
   ///
   /// In tr, this message translates to:
-  /// **'Şifre en az 6 karakter olmalı'**
+  /// **'Şifre en az 8 karakter olmalı'**
   String get authPasswordTooShort;
 
   /// No description provided for @authPasswordHelper.
   ///
   /// In tr, this message translates to:
-  /// **'En az 6 karakter'**
+  /// **'En az 8 karakter'**
   String get authPasswordHelper;
 
   /// No description provided for @authLoginButton.
@@ -2155,6 +2155,30 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Kriz anında durup buraya gelmek başlı başına bir kazanım. Kendine iyi davranmaya devam et — yarın yeni bir gün.'**
   String get emThanksBody;
+
+  /// No description provided for @featureDisabledBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu özellik demo sürümünde kapalı.'**
+  String get featureDisabledBody;
+
+  /// No description provided for @aiChatDisabledTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'AI asistan şu an aktif değil'**
+  String get aiChatDisabledTitle;
+
+  /// No description provided for @dpAiDisabledTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'AI diyet planı şu an aktif değil'**
+  String get dpAiDisabledTitle;
+
+  /// No description provided for @dcComingSoonTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Diyetisyen desteği — yakında'**
+  String get dcComingSoonTitle;
 }
 
 class _AppLocalizationsDelegate
