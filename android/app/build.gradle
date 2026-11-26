@@ -5,8 +5,25 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+// ---- Release imzalama ----
+// android/key.properties (git'e GİRMEZ) → storeFile, storePassword, keyAlias,
+// keyPassword. storeFile göreli ise android/app/'e göredir. Dosya yoksa ya da
+// eksikse release build AÇIK HATA verir: debug imzalı AAB/APK yanlışlıkla
+// Play'e yüklenmesin. Debug/profile build'ler key.properties istemez.
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.withReader("UTF-8") { reader ->
+        keystoreProperties.load(reader)
+    }
+}
+def requiredSigningKeys = ["storeFile", "storePassword", "keyAlias", "keyPassword"]
+def missingSigningKeys = requiredSigningKeys.findAll {
+    !keystoreProperties.getProperty(it)?.trim()
+}
+
 android {
-    namespace = "com.example.diet_app"
+    namespace = "com.umurpasa.hachibu"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,8 +37,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.diet_app"
+        applicationId = "com.umurpasa.hachibu"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -30,15 +46,52 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        release {
+            if (missingSigningKeys.isEmpty()) {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            // Asla debug imzasına düşmez. R8/minify ve shrinkResources'ı
+            // Flutter Gradle eklentisi release için zaten açıyor (kendi
+            // ProGuard kurallarıyla); burada ayrıca ayarlanmıyor.
+            signingConfig = signingConfigs.release
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+// Release görevi istendiyse imza bilgisi tam olmalı — yoksa açık hata.
+// (Mesajlar ASCII: Windows konsolu Türkçe karakterleri bozuyor.)
+gradle.taskGraph.whenReady { graph ->
+    def releaseRequested = graph.allTasks.any { task ->
+        task.project == project && task.name.toLowerCase().contains("release")
+    }
+    if (!releaseRequested) return
+    if (!keystorePropertiesFile.exists()) {
+        throw new GradleException(
+            "Release signing: android/key.properties not found. " +
+            "Refusing to build a debug-signed release - create key.properties " +
+            "(storeFile, storePassword, keyAlias, keyPassword).")
+    }
+    if (!missingSigningKeys.isEmpty()) {
+        throw new GradleException(
+            "Release signing: missing field(s) in android/key.properties: " +
+            missingSigningKeys.join(", "))
+    }
+    def storeFile = file(keystoreProperties.getProperty("storeFile"))
+    if (!storeFile.exists()) {
+        throw new GradleException(
+            "Release signing: keystore not found: ${storeFile.absolutePath}")
+    }
 }

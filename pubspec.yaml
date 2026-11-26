@@ -26,6 +26,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -38,3 +39,14 @@ flutter:
     - legal/
     # google_fonts runtime indirmesi kapalı (gizlilik): fontlar pakete gömülü.
     - assets/google_fonts/
+# Launcher ikonu (yalnız Android). Kaynak: assets/icon/ — uygulama asset'i DEĞİL.
+# Yeniden üretmek için: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/app_icon.png"
+  adaptive_icon_background: "assets/icon/app_icon_background.png"
+  adaptive_icon_foreground: "assets/icon/app_icon_foreground.png"
+  # Ön plan görseli güvenli alana göre zaten boşluklu (logo tuvalin ~%47'si);
+  # paketin varsayılan %16 ek iç boşluğu ikonu gereksiz küçültürdü.
+  adaptive_icon_foreground_inset: 0
