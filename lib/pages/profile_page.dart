@@ -4,6 +4,7 @@ import '../config/app_theme.dart';
 import '../config/locale_controller.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/error_messages.dart';
+import '../widgets/delete_account_dialog.dart';
 import '../widgets/page_header.dart';
 import 'auth_page.dart' show kMinPasswordLength;
 import 'legal_page.dart';
@@ -173,6 +174,38 @@ class _ProfilePageState extends State<ProfilePage> {
     if (confirmed == true) {
       await _supabase.auth.signOut();
     }
+  }
+
+  /// Hesap silme (Google Play zorunluluğu + KVKK rıza geri çekme yolu).
+  ///
+  /// Başarıda: yalnızca yerel oturum kapatılır (sunucudaki oturum kullanıcı
+  /// silinince zaten geçersiz; global signOut hata verebilir). Bu, kalıcı
+  /// oturumu (supabase_flutter'ın SharedPreferences kaydı) siler; cihazda
+  /// kullanıcıya ait başka önbellek yok — 'locale' cihaz UI tercihidir,
+  /// giriş ekranı aynı dilde kalsın diye korunur. AuthGate signedOut
+  /// olayıyla AuthPage'e geçer; push edilmiş bu sayfa kökten kapatılır.
+  Future<void> _deleteAccount() async {
+    final l10n = AppLocalizations.of(context)!;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    final deleted = await showDeleteAccountFlow(context);
+    if (!deleted) return;
+
+    try {
+      await _supabase.auth.signOut(scope: SignOutScope.local);
+    } catch (_) {
+      // Yerel oturum ağ çağrısından ÖNCE silinir; sunucu tarafı hatası
+      // (kullanıcı artık yok) önemsiz.
+    }
+    navigator.popUntil((route) => route.isFirst);
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(l10n.delAccSuccess),
+        backgroundColor: AppColors.primary,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   // ---- Bölüm özetleri (onboarding l10n etiketleriyle) ----
@@ -663,6 +696,15 @@ class _ProfilePageState extends State<ProfilePage> {
             label: l10n.profSignOut,
             color: AppColors.sos,
             onTap: _confirmSignOut,
+          ),
+          // Yıkıcı işlem: diğer satırlardan görsel olarak ayrılır; sakin
+          // ama belirgin (tam kırmızı buton değil).
+          const Divider(height: 18, indent: 18, endIndent: 18),
+          _accountRow(
+            icon: Icons.delete_forever_outlined,
+            label: l10n.profDeleteAccount,
+            color: AppColors.sos,
+            onTap: _deleteAccount,
           ),
           const SizedBox(height: 6),
         ],

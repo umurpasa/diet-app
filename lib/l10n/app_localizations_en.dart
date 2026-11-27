@@ -1220,4 +1220,44 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get gateOfflineBody =>
       'We couldn\'t load your account details. Check your internet connection and try again.';
+
+  @override
+  String get profDeleteAccount => 'Delete account';
+
+  @override
+  String get delAccTitle => 'Delete your account?';
+
+  @override
+  String get delAccBody =>
+      'Your account and all of your data — your profile, health information, and meal, water and weight logs — will be permanently deleted. This can\'t be undone.\n\nThis also withdraws your explicit consent to the processing of your health data.';
+
+  @override
+  String get delAccContinue => 'Continue';
+
+  @override
+  String get delAccCancel => 'Cancel';
+
+  @override
+  String get delAccConfirmTitle => 'Final step';
+
+  @override
+  String get delAccConfirmWord => 'DELETE';
+
+  @override
+  String delAccConfirmPrompt(String word) {
+    return 'Type $word below to confirm.';
+  }
+
+  @override
+  String get delAccConfirmButton => 'Permanently delete my account';
+
+  @override
+  String get delAccDeleting => 'Deleting your account…';
+
+  @override
+  String get delAccSuccess => 'Your account has been deleted.';
+
+  @override
+  String get delAccFailed =>
+      'Couldn\'t delete your account. Please try again in a moment.';
 }

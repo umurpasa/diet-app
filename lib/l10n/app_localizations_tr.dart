@@ -1213,4 +1213,44 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get gateOfflineBody =>
       'Hesap bilgilerin yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.';
+
+  @override
+  String get profDeleteAccount => 'Hesabı sil';
+
+  @override
+  String get delAccTitle => 'Hesabın silinsin mi?';
+
+  @override
+  String get delAccBody =>
+      'Hesabın ve tüm verilerin — profilin, sağlık bilgilerin, öğün, su ve kilo kayıtların — kalıcı olarak silinir. Bu işlem geri alınamaz.\n\nBu aynı zamanda sağlık verilerinin işlenmesine verdiğin açık rızanın geri çekilmesi anlamına gelir.';
+
+  @override
+  String get delAccContinue => 'Devam';
+
+  @override
+  String get delAccCancel => 'Vazgeç';
+
+  @override
+  String get delAccConfirmTitle => 'Son adım';
+
+  @override
+  String get delAccConfirmWord => 'SİL';
+
+  @override
+  String delAccConfirmPrompt(String word) {
+    return 'Onaylamak için aşağıya $word yaz.';
+  }
+
+  @override
+  String get delAccConfirmButton => 'Hesabımı kalıcı olarak sil';
+
+  @override
+  String get delAccDeleting => 'Hesabın siliniyor…';
+
+  @override
+  String get delAccSuccess => 'Hesabın silindi.';
+
+  @override
+  String get delAccFailed =>
+      'Hesap silinemedi. Lütfen biraz sonra tekrar dene.';
 }

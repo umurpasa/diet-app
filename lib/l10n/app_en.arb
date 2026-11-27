@@ -411,5 +411,17 @@
   "onbAgeOutOfRange": "Enter a valid age (18–120).",
   "profLegalNotice": "Privacy & information notice",
   "gateOfflineTitle": "Couldn't connect",
-  "gateOfflineBody": "We couldn't load your account details. Check your internet connection and try again."
+  "gateOfflineBody": "We couldn't load your account details. Check your internet connection and try again.",
+  "profDeleteAccount": "Delete account",
+  "delAccTitle": "Delete your account?",
+  "delAccBody": "Your account and all of your data — your profile, health information, and meal, water and weight logs — will be permanently deleted. This can't be undone.\n\nThis also withdraws your explicit consent to the processing of your health data.",
+  "delAccContinue": "Continue",
+  "delAccCancel": "Cancel",
+  "delAccConfirmTitle": "Final step",
+  "delAccConfirmWord": "DELETE",
+  "delAccConfirmPrompt": "Type {word} below to confirm.",
+  "delAccConfirmButton": "Permanently delete my account",
+  "delAccDeleting": "Deleting your account…",
+  "delAccSuccess": "Your account has been deleted.",
+  "delAccFailed": "Couldn't delete your account. Please try again in a moment."
 }

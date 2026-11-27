@@ -2335,6 +2335,78 @@ abstract class AppLocalizations {
   /// In tr, this message translates to:
   /// **'Hesap bilgilerin yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.'**
   String get gateOfflineBody;
+
+  /// No description provided for @profDeleteAccount.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesabı sil'**
+  String get profDeleteAccount;
+
+  /// No description provided for @delAccTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesabın silinsin mi?'**
+  String get delAccTitle;
+
+  /// No description provided for @delAccBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesabın ve tüm verilerin — profilin, sağlık bilgilerin, öğün, su ve kilo kayıtların — kalıcı olarak silinir. Bu işlem geri alınamaz.\n\nBu aynı zamanda sağlık verilerinin işlenmesine verdiğin açık rızanın geri çekilmesi anlamına gelir.'**
+  String get delAccBody;
+
+  /// No description provided for @delAccContinue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devam'**
+  String get delAccContinue;
+
+  /// No description provided for @delAccCancel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Vazgeç'**
+  String get delAccCancel;
+
+  /// No description provided for @delAccConfirmTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son adım'**
+  String get delAccConfirmTitle;
+
+  /// Hesap silme onayı için kullanıcının birebir yazması gereken kelime.
+  ///
+  /// In tr, this message translates to:
+  /// **'SİL'**
+  String get delAccConfirmWord;
+
+  /// No description provided for @delAccConfirmPrompt.
+  ///
+  /// In tr, this message translates to:
+  /// **'Onaylamak için aşağıya {word} yaz.'**
+  String delAccConfirmPrompt(String word);
+
+  /// No description provided for @delAccConfirmButton.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesabımı kalıcı olarak sil'**
+  String get delAccConfirmButton;
+
+  /// No description provided for @delAccDeleting.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesabın siliniyor…'**
+  String get delAccDeleting;
+
+  /// No description provided for @delAccSuccess.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesabın silindi.'**
+  String get delAccSuccess;
+
+  /// No description provided for @delAccFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hesap silinemedi. Lütfen biraz sonra tekrar dene.'**
+  String get delAccFailed;
 }
 
 class _AppLocalizationsDelegate
