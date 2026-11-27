@@ -9,7 +9,7 @@ Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") madde 10 u
 ## 1. Veri sorumlusu
 
 Umur Paşa (gerçek kişi veri sorumlusu)
-İletişim: [İLETİŞİM_EPOSTA]
+İletişim: umur.pasa@outlook.com
 
 ## 2. Hangi verileri işliyoruz?
 
@@ -42,8 +42,6 @@ Uygulamaya girdiğin bilgiler aracılığıyla, elektronik ortamda, otomatik yol
 
 Verilerin, Uygulamanın altyapı (veritabanı ve kimlik doğrulama) hizmet sağlayıcısı **Supabase, Inc.** tarafından işletilen ve **Almanya'nın Frankfurt** bölgesinde bulunan sunucularda saklanır. Bu nedenle verilerin **yurt dışına aktarılmış** olur. Supabase, verileri yalnızca hizmeti sunmak amacıyla ve veri işleyen sıfatıyla işler.
 
-Hesap doğrulama ve şifre sıfırlama e-postaları bir e-posta gönderim hizmeti aracılığıyla iletilir; bu hizmete yalnızca e-posta adresin ve gönderilen e-postanın içeriği aktarılır.
-
 Verilerin bunlar dışında hiçbir üçüncü kişiyle paylaşılmaz; yasal bir zorunluluk olması hâli saklıdır.
 
 ## 6. Ne kadar süre saklanır?
@@ -58,7 +56,7 @@ Sağlık verilerinin işlenmesine verdiğin açık rızayı **her zaman geri çe
 
 Veri sorumlusuna başvurarak; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, aktarıldığı üçüncü kişileri bilme, eksik veya yanlış işlenmişse düzeltilmesini, silinmesini veya yok edilmesini isteme, bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, münhasıran otomatik sistemlerle analiz edilmesi sonucu aleyhine bir sonuç çıkmasına itiraz etme ve kanuna aykırı işleme nedeniyle zarara uğraman hâlinde zararın giderilmesini talep etme haklarına sahipsin.
 
-Başvurularını, Uygulamada kayıtlı e-posta adresinden **[İLETİŞİM_EPOSTA]** adresine gönderebilirsin. Başvurun en geç **30 gün** içinde ücretsiz olarak sonuçlandırılır.
+Başvurularını, Uygulamada kayıtlı e-posta adresinden **umur.pasa@outlook.com** adresine gönderebilirsin. Başvurun en geç **30 gün** içinde ücretsiz olarak sonuçlandırılır.
 
 ## 9. Güvenlik
 

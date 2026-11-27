@@ -9,7 +9,7 @@ This policy explains how the Hachibu mobile app ("the App") processes your perso
 ## 1. Data controller
 
 Umur Paşa (individual data controller)
-Contact: [CONTACT_EMAIL]
+Contact: umur.pasa@outlook.com
 
 ## 2. What data we process
 
@@ -42,8 +42,6 @@ Electronically, through the information you enter in the App.
 
 Your data is stored on servers located in **Frankfurt, Germany**, operated by the App's infrastructure (database and authentication) provider **Supabase, Inc.** Your data is therefore **transferred outside Turkey**. Supabase processes it only to provide the service, as a data processor.
 
-Account verification and password reset emails are delivered through an email delivery service, which receives only your email address and the content of that email.
-
 Your data is not shared with anyone else, except where required by law.
 
 ## 6. Retention
@@ -58,7 +56,7 @@ You can **withdraw** your explicit consent to the processing of your health data
 
 You have the right to learn whether your data is processed and request information about it; learn the purpose of processing and whether it is used accordingly; know the third parties it is transferred to; request correction of incomplete or inaccurate data; request erasure or destruction; request that these actions be notified to third parties; object to an outcome against you arising solely from automated analysis; and claim compensation for damage caused by unlawful processing.
 
-Send requests from the email address registered in the App to **[CONTACT_EMAIL]**. Requests are answered free of charge within **30 days** at the latest.
+Send requests from the email address registered in the App to **umur.pasa@outlook.com**. Requests are answered free of charge within **30 days** at the latest.
 
 ## 9. Security
 
