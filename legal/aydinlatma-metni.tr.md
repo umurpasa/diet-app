@@ -50,7 +50,7 @@ Verilerin, hesabın açık olduğu sürece saklanır. Hesabını sildiğinde tü
 
 ## 7. Rızanı geri çekme
 
-Sağlık verilerinin işlenmesine verdiğin açık rızayı **her zaman geri çekebilirsin**. Uygulama sağlık verisi olmadan çalışamadığından, rızanı geri çekmek için Uygulama içindeki **Profil > Hesabı sil** seçeneğini kullanabilir veya aşağıdaki adrese yazabilirsin. Hesap silme sayfası: [HESAP_SILME_URL]
+Sağlık verilerinin işlenmesine verdiğin açık rızayı **her zaman geri çekebilirsin**. Uygulama sağlık verisi olmadan çalışamadığından, rızanı geri çekmek için Uygulama içindeki **Profil > Hesabı sil** seçeneğini kullanabilir veya aşağıdaki adrese yazabilirsin. Hesap silme sayfası: https://umurpasa.github.io/hachibu/delete-account.html
 
 ## 8. Haklarınız (KVKK m.11)
 

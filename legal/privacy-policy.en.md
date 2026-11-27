@@ -50,7 +50,7 @@ Your data is kept for as long as your account exists. When you delete your accou
 
 ## 7. Withdrawing consent
 
-You can **withdraw** your explicit consent to the processing of your health data **at any time**. Because the App cannot work without health data, you can withdraw consent by using **Profile > Delete account** in the App, or by writing to the address below. Account deletion page: [ACCOUNT_DELETION_URL]
+You can **withdraw** your explicit consent to the processing of your health data **at any time**. Because the App cannot work without health data, you can withdraw consent by using **Profile > Delete account** in the App, or by writing to the address below. Account deletion page: https://umurpasa.github.io/hachibu/delete-account.html
 
 ## 8. Your rights (KVKK Art. 11)
 

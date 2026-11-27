@@ -83,3 +83,6 @@ assets/screenshots/*.mp4
 docs/*
 !docs/ARCHITECTURE.md
 !docs/SETUP.md
+
+# GitHub Pages build output
+_site/
